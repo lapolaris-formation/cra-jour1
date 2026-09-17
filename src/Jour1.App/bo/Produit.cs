@@ -6,6 +6,7 @@ class Produit
     public string Categorie { get; }
     public int Stock { get; }
     public double PrixTTC { get; }
+    public double PrixHT { get; }
 
 
 
