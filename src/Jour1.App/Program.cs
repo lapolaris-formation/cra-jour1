@@ -1,6 +1,3 @@
-﻿for (int i = 0; i <= 100; i += 10)
-{
-    Console.Write($"\rChargement {i}%   ");
-    Thread.Sleep(500); // pause de 500 ms
-}
-Console.WriteLine();
+﻿
+Client client = new Client("Doe", "John", "doe.jhon@example.com");
+Console.WriteLine($"Client : {client.Prenom} {client.Nom} ({client.Email})");
