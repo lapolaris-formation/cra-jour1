@@ -11,6 +11,10 @@ class Panier{
         lignes.Add(ligne);
     }
 
+    public bool EstVide(){
+        return lignes.Count == 0;
+    }
+
     public int NombreLignes(){
         return lignes.Count;
     }
