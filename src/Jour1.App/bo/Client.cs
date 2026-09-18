@@ -6,6 +6,7 @@ class Client
 
     public Client(string nom, string prenom, string email)
     {
+        if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException("L'email est obligatoire.");
         Nom = nom;
         Prenom = prenom;
         Email = email;
