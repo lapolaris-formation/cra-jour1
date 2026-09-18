@@ -11,6 +11,10 @@ class Panier{
         lignes.Add(ligne);
     }
 
+    public int NombreLignes(){
+        return lignes.Count;
+    }
+
     public void AfficherPanier(){
         Console.WriteLine($"Panier de {client.Prenom} {client.Nom} :");
         foreach(var ligne in lignes){
