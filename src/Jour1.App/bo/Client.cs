@@ -6,7 +6,7 @@ class Client
 
     public Client(string nom, string prenom, string email)
     {
-        if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException("L'email est obligatoire.");
+        if (string.IsNullOrWhiteSpace(email) || !email.Contains('@')) throw new ArgumentException("L'email est invalide.");
         Nom = nom;
         Prenom = prenom;
         Email = email;
