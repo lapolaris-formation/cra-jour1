@@ -19,6 +19,12 @@ class Panier{
         return lignes.Count;
     }
 
+    // calcul du total du panier
+    public double Total(){
+        return lignes.Sum(l => l.Produit.Prix * l.Quantite);
+    }
+
+
     public void AfficherPanier(){
         Console.WriteLine($"Panier de {client.Prenom} {client.Nom} :");
         foreach(var ligne in lignes){
