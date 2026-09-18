@@ -30,5 +30,6 @@ class Panier{
         foreach(var ligne in lignes){
             Console.WriteLine($"- {ligne.Produit.Nom} : ${ligne.Produit.Prix} (Quantité: {ligne.Quantite})");
         }
+        Console.WriteLine($"Total : ${Total()}");
     }
 }
