@@ -14,6 +14,7 @@ class Produit
     {
 
         if (string.IsNullOrWhiteSpace(nom)) throw new ArgumentException("Le nom est obligatoire.");
+        if (string.IsNullOrWhiteSpace(categorie)) throw new ArgumentException("La categorie est obligatoire.");
         Reference = reference;
         Nom = nom;
         Prix = prix;
