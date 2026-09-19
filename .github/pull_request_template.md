@@ -2,29 +2,29 @@
 
 Que fait ce changement et pourquoi.
 
-## Issue liée
+## Issue liÃ©e
 
 Closes #
 
 ## Nature du changement
 
-- [ ] Correction de défaut
-- [ ] Correctif de sécurité
-- [ ] Nouvelle fonctionnalité
+- [ ] Correction de dÃ©faut
+- [ ] Correctif de sÃ©curitÃ©
+- [ ] Nouvelle fonctionnalitÃ©
 - [ ] Refactorisation sans changement de comportement
 - [ ] Documentation
 
 ## Impact sur le comportement du logiciel
 
 - [ ] Aucun changement de comportement visible par l'utilisateur ou la machine
-- [ ] Changement de comportement, décrit ci-dessous
+- [ ] Changement de comportement, dÃ©crit ci-dessous
 
-## Vérifications
+## VÃ©rifications
 
 - [ ] Le projet compile
 - [ ] Les tests passent
-- [ ] Le changelog est à jour
-- [ ] La documentation technique est à jour si nécessaire
+- [ ] Le changelog est Ã  jour
+- [ ] La documentation technique est Ã  jour si nÃ©cessaire
 
 ## Points d'attention pour le relecteur
 
