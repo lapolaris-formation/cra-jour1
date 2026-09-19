@@ -5,6 +5,7 @@ Que fait ce changement et pourquoi.
 ## Issue liée
 
 Closes #
+<!-- Pour lier sans fermer l'issue : Refs # -->
 
 ## Nature du changement
 
