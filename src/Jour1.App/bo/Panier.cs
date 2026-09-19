@@ -28,8 +28,8 @@ class Panier{
     public void AfficherPanier(){
         Console.WriteLine($"Panier de {client.Prenom} {client.Nom} :");
         foreach(var ligne in lignes){
-            Console.WriteLine($"- {ligne.Produit.Nom} : ${ligne.Produit.Prix} (Quantité: {ligne.Quantite})");
+            Console.WriteLine($"- {ligne.Produit.Nom} : {ligne.Produit.Prix} € (Quantité: {ligne.Quantite})");
         }
-        Console.WriteLine($"Total : ${Total()}");
+        Console.WriteLine($"Total : {Total()} €");
     }
 }
