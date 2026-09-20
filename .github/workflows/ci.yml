@@ -50,3 +50,17 @@ jobs:
           name: resultats-tests
           path: ./TestResults
           retention-days: 30
+
+      - name: Publier l'application
+        run: >
+          dotnet publish src/Jour1.App/Jour1.App.csproj
+          --configuration Release
+          --output ./publication
+          --no-build
+
+      - name: Téléverser les binaires
+        uses: actions/upload-artifact@v7
+        with:
+          name: jour1-app-${{ github.sha }}
+          path: ./publication
+          retention-days: 90
