@@ -10,8 +10,44 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v7
+
+      - name: Installer le SDK .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Cache des paquets NuGet
+        uses: actions/cache@v6
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Exécuter les tests
+        run: >
+          dotnet test tests/Jour1.Tests/Jour1.Tests.csproj
+          --configuration Release
+          --logger "trx;LogFileName=resultats.trx"
+          --collect:"XPlat Code Coverage"
+          --results-directory ./TestResults
+
+      - name: Publier les résultats de tests
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: resultats-tests
+          path: ./TestResults
+          retention-days: 30
+
+  build:
+    runs-on: windows-latest
 
     steps:
       - name: Récupérer le code
@@ -36,24 +72,9 @@ jobs:
       - name: Compiler
         run: dotnet build --no-restore --configuration Release
 
-      - name: Exécuter les tests
+      - name: Publier l'application WPF
         run: >
-          dotnet test --no-build --configuration Release
-          --logger "trx;LogFileName=resultats.trx"
-          --collect:"XPlat Code Coverage"
-          --results-directory ./TestResults
-
-      - name: Publier les résultats de tests
-        uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: resultats-tests
-          path: ./TestResults
-          retention-days: 30
-
-      - name: Publier l'application
-        run: >
-          dotnet publish src/Jour1.App/Jour1.App.csproj
+          dotnet publish src/Jour1.Wpf/Jour1.Wpf.csproj
           --configuration Release
           --output ./publication
           --no-build
@@ -61,6 +82,6 @@ jobs:
       - name: Téléverser les binaires
         uses: actions/upload-artifact@v7
         with:
-          name: jour1-app-${{ github.sha }}
+          name: jour1-wpf-${{ github.sha }}
           path: ./publication
           retention-days: 90
