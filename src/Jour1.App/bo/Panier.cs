@@ -22,8 +22,9 @@ public class Panier{
 
     // calcul du total du panier
     public double Total(){
-        return lignes.Sum(l => l.Produit.Prix * l.Quantite);
+        return lignes.Sum(l => l.Produit.Prix);
     }
+
 
 
     public void AfficherPanier(){
