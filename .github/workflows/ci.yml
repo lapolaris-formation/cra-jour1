@@ -35,3 +35,10 @@ jobs:
 
       - name: Compiler
         run: dotnet build --no-restore --configuration Release
+
+      - name: Exécuter les tests
+        run: >
+          dotnet test --no-build --configuration Release
+          --logger "trx;LogFileName=resultats.trx"
+          --collect:"XPlat Code Coverage"
+          --results-directory ./TestResults
