@@ -1,4 +1,4 @@
-class Ligne
+public class Ligne
 {
     public Produit Produit { get; }
     public int Quantite { get; }

@@ -1,4 +1,4 @@
-class Produit
+public class Produit
 {
     public string Reference { get; }
     public string Nom { get; }

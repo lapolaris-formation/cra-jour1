@@ -1,4 +1,5 @@
-class Panier{
+public class Panier{
+
     private List<Ligne> lignes;
     private Client client;
 
