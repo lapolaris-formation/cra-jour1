@@ -1,4 +1,4 @@
-class Client
+public class Client
 {
     public string Nom { get; }
     public string Prenom { get; }
