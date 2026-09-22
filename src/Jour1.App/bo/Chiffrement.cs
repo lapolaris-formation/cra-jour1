@@ -41,5 +41,18 @@ public class Chiffrement
         return [.. aes.IV, .. chiffre];
     }
 
+    // Méthode héritée, volontairement vulnérable : sert à vérifier que CodeQL
+    // remonte bien un signalement dans l'onglet Security (atelier 9.2, étape 6).
+    public static byte[] ChiffrerHerite(string texte)
+    {
+        using SymmetricAlgorithm des = new DESCryptoServiceProvider();
+        des.Key = Encoding.UTF8.GetBytes("12345678");
+        des.IV = Encoding.UTF8.GetBytes("87654321");
+
+        using var transformation = des.CreateEncryptor();
+        var octets = Encoding.UTF8.GetBytes(texte);
+        return transformation.TransformFinalBlock(octets, 0, octets.Length);
+    }
+
     public static string ObtenirChaineConnexion() => ChaineConnexion;
 }
