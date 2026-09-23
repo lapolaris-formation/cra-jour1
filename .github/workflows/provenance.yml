@@ -1,0 +1,47 @@
+name: Provenance
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    tags: [ 'v*' ]
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v7
+
+      - name: Installer le SDK .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Publier l'application
+        run: >
+          dotnet publish src/Jour1.App/Jour1.App.csproj
+          --configuration Release
+          --runtime win-x64
+          --self-contained false
+          --output ./publication
+
+      - name: Générer l'attestation de provenance
+        uses: actions/attest-build-provenance@v4
+        with:
+          subject-path: |
+            ./publication/Jour1.App.exe
+            ./publication/Jour1.App.dll
+
+      - name: Téléverser les binaires attestés
+        uses: actions/upload-artifact@v7
+        with:
+          name: jour1-app-atteste-${{ github.sha }}
+          path: ./publication
+          retention-days: 90
