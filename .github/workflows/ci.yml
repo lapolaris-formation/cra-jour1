@@ -19,8 +19,10 @@ jobs:
 
       - name: Installer le SDK .NET
         uses: actions/setup-dotnet@v6
-        with:
-          dotnet-version: '8.0.x'
+        # sans dotnet-version : setup-dotnet lit global.json
+
+      - name: Afficher le SDK utilisé
+        run: dotnet --version
 
       - name: Cache des paquets NuGet
         uses: actions/cache@v6
